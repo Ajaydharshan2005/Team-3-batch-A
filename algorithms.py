@@ -3,7 +3,7 @@ class InventoryAlgorithms:
     @staticmethod
     def total_inventory_value(products):
         total = 0.0
-        for product in products:
+        for _, product in enumerate(products, start=1):
             total += product.get_value()
         return total
 

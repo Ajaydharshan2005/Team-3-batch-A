@@ -1,11 +1,12 @@
 from product import Product
 from algorithms import InventoryAlgorithms
+from linked_list import LinkedList
 
 
 class Inventory:
 
     def __init__(self):
-        self.products = []
+        self.products = LinkedList()
 
     # Add Product
     def add_product(self, product):
@@ -111,6 +112,9 @@ class Inventory:
 
     def total_inventory_value(self):
         return InventoryAlgorithms.total_inventory_value(self.products)
+
+    def enumerate_products(self):
+        return enumerate(self.products, start=1)
 
     def max_k_product_value(self, k):
         return InventoryAlgorithms.sliding_window_max_k_value(self.products, k)
