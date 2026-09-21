@@ -294,4 +294,6 @@ Possible future enhancements include:
 * Low-stock alerts
 * Sales and purchase tracking
 
+Ajay's explanation-  https://drive.google.com/file/d/1DYCAeEqIPAh2-XQKjBabtl2kVV1T9qnT/view?usp=sharing
+
 
