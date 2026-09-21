@@ -25,6 +25,7 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(products[-1], 3)
         self.assertEqual(products[1:3], [1, 2])
 
+
     def test_empty_list(self):
         products = LinkedList()
 
