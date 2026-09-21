@@ -1,4 +1,5 @@
 from product import Product
+from algorithms import InventoryAlgorithms
 
 
 class Inventory:
@@ -107,3 +108,12 @@ class Inventory:
 
         print("Quantity updated successfully.")
         return True
+
+    def total_inventory_value(self):
+        return InventoryAlgorithms.total_inventory_value(self.products)
+
+    def max_k_product_value(self, k):
+        return InventoryAlgorithms.sliding_window_max_k_value(self.products, k)
+
+    def product_pair_search(self, target_price):
+        return InventoryAlgorithms.two_pointers_price_pair(self.products, target_price)
