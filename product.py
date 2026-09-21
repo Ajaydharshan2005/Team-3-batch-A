@@ -12,6 +12,7 @@ class Product:
         print(
             f"{self.product_id:<10}"
             f"{self.name:<15}"
-            f"{self.price:<10.2f}"
+            f"{self.price:<12.2f}"
             f"{self.quantity:<10}"
+            f"{self.get_value():<12.2f}"
         )

@@ -2,58 +2,152 @@ from product import Product
 from inventory import Inventory
 
 
+def add_product(inventory):
+
+    try:
+        product_id = int(input("Enter Product ID: "))
+
+        name = input("Enter Product Name: ").strip()
+
+        if name == "":
+            print("Product name cannot be empty.")
+            return
+
+        price = float(input("Enter Price: "))
+
+        quantity = int(input("Enter Quantity: "))
+
+        if price < 0:
+            print("Price cannot be negative.")
+            return
+
+        if quantity < 0:
+            print("Quantity cannot be negative.")
+            return
+
+        product = Product(
+            product_id,
+            name,
+            price,
+            quantity
+        )
+
+        inventory.add_product(product)
+
+    except ValueError:
+        print("Invalid input. Please enter valid values.")
+
+
+def search_product(inventory):
+
+    if len(inventory.products) == 0:
+        print("Inventory is empty.")
+        return
+
+    search_value = input(
+        "Enter Product ID or Product Name: "
+    ).strip()
+
+    product = inventory.search_product(search_value)
+
+    if product is None:
+        print("Product not found.")
+    else:
+        print("\nProduct Found:")
+        print("-" * 60)
+
+        print(
+            f"{'ID':<10}"
+            f"{'Name':<15}"
+            f"{'Price':<12}"
+            f"{'Quantity':<10}"
+            f"{'Value':<12}"
+        )
+
+        print("-" * 60)
+
+        product.display()
+
+
+def update_quantity(inventory):
+
+    try:
+        product_id = int(
+            input("Enter Product ID: ")
+        )
+
+        new_quantity = int(
+            input("Enter New Quantity: ")
+        )
+
+        inventory.update_quantity(
+            product_id,
+            new_quantity
+        )
+
+    except ValueError:
+        print("Invalid input.")
+
+
+def show_menu():
+
+    print("\n")
+    print("=" * 50)
+    print("          MINI INVENTORY MANAGER")
+    print("=" * 50)
+
+    print("1. Add Product")
+    print("2. Display Inventory")
+    print("3. Search Product")
+    print("4. Update Quantity")
+    print("5. Exit")
+
+    print("=" * 50)
+
+
 def main():
 
     inventory = Inventory()
 
-    # Add products
-    inventory.add_product(
-        Product(101, "Pen", 20, 50)
-    )
+    while True:
 
-    inventory.add_product(
-        Product(102, "Book", 100, 20)
-    )
+        show_menu()
 
-    inventory.add_product(
-        Product(103, "Bag", 800, 10)
-    )
+        choice = input(
+            "Enter your choice: "
+        ).strip()
 
-    inventory.add_product(
-        Product(104, "Bottle", 300, 15)
-    )
+        if choice == "1":
 
-    # Display
-    print("\n--- INVENTORY ---")
-    inventory.display_inventory()
+            add_product(inventory)
 
-    # Search by ID
-    print("\n--- SEARCH BY ID ---")
+        elif choice == "2":
 
-    product = inventory.search_by_id(103)
+            inventory.display_inventory()
 
-    if product:
-        product.display()
-    else:
-        print("Product not found.")
+        elif choice == "3":
 
-    # Search by name
-    print("\n--- SEARCH BY NAME ---")
+            search_product(inventory)
 
-    product = inventory.search_by_name("Book")
+        elif choice == "4":
 
-    if product:
-        product.display()
-    else:
-        print("Product not found.")
+            update_quantity(inventory)
 
-    # Update quantity
-    print("\n--- UPDATE QUANTITY ---")
+        elif choice == "5":
 
-    inventory.update_quantity(103, 15)
+            print(
+                "\nThank you for using "
+                "Mini Inventory Manager!"
+            )
 
-    print("\n--- UPDATED INVENTORY ---")
-    inventory.display_inventory()
+            break
+
+        else:
+
+            print(
+                "Invalid choice. "
+                "Please select 1-5."
+            )
 
 
 if __name__ == "__main__":

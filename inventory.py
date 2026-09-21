@@ -6,11 +6,21 @@ class Inventory:
     def __init__(self):
         self.products = []
 
-    # 1. Add Product
+    # Add Product
     def add_product(self, product):
         # Check duplicate ID
         if self.search_by_id(product.product_id) is not None:
             print("Product ID already exists.")
+            return False
+
+        # Validate price
+        if product.price < 0:
+            print("Price cannot be negative.")
+            return False
+
+        # Validate quantity
+        if product.quantity < 0:
+            print("Quantity cannot be negative.")
             return False
 
         self.products.append(product)
@@ -18,26 +28,33 @@ class Inventory:
         print("Product added successfully.")
         return True
 
-    # 2. Display Inventory
+    # Display Inventory
     def display_inventory(self):
 
         if len(self.products) == 0:
-            print("Inventory is empty.")
+            print("\nInventory is empty.")
             return
+
+        print("\n" + "=" * 60)
+        print("                    INVENTORY")
+        print("=" * 60)
 
         print(
             f"{'ID':<10}"
             f"{'Name':<15}"
-            f"{'Price':<10}"
+            f"{'Price':<12}"
             f"{'Quantity':<10}"
+            f"{'Value':<12}"
         )
 
-        print("-" * 45)
+        print("-" * 60)
 
         for product in self.products:
             product.display()
 
-    # 3. Search by ID
+        print("=" * 60)
+
+    # Search by Product ID
     def search_by_id(self, product_id):
 
         for product in self.products:
@@ -46,7 +63,7 @@ class Inventory:
 
         return None
 
-    # 4. Search by Name
+    # Search by Product Name
     def search_by_name(self, name):
 
         for product in self.products:
@@ -55,7 +72,25 @@ class Inventory:
 
         return None
 
-    # 5. Update Quantity
+    # Search by ID or Name
+    def search_product(self, search_value):
+
+        # Try searching by ID
+        try:
+            product_id = int(search_value)
+
+            product = self.search_by_id(product_id)
+
+            if product is not None:
+                return product
+
+        except ValueError:
+            pass
+
+        # Search by name
+        return self.search_by_name(search_value)
+
+    # Update Quantity
     def update_quantity(self, product_id, new_quantity):
 
         product = self.search_by_id(product_id)
