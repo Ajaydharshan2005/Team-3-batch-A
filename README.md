@@ -295,5 +295,5 @@ Possible future enhancements include:
 * Sales and purchase tracking
 
 Ajay's explanation-  https://drive.google.com/file/d/1DYCAeEqIPAh2-XQKjBabtl2kVV1T9qnT/view?usp=sharing
-
+Dharshni Sivasankar's explanation-  https://drive.google.com/file/d/1MTkXNM6H0BqX06-I_hdZ1sh_qtYUN9lG/view?usp=sharing
 
